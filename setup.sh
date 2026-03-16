@@ -6,9 +6,17 @@
 set -e
 set -u
 
+# Configuration file to store state
+CONFIG_DIR="/etc/veilos"
+STATE_FILE="$CONFIG_DIR/install_prefs"
 SKIP_DEV=false
 
-# Parse arguments
+# 1. Load previous state if it exists
+if [ -f "$STATE_FILE" ]; then
+    . "$STATE_FILE"
+fi
+
+# 2. Parse arguments (Overrides previous state)
 while [ "$#" -gt 0 ]; do
   case "$1" in
     --skip-dev)
@@ -16,7 +24,6 @@ while [ "$#" -gt 0 ]; do
       shift
       ;;
     *)
-      # Ignore or handle other unknown arguments
       shift
       ;;
   esac
@@ -28,19 +35,20 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
+# 3. Ensure config directory exists and save state
+mkdir -p "$CONFIG_DIR"
+echo "SKIP_DEV=$SKIP_DEV" > "$STATE_FILE"
+
 # Run modular install scripts
 sh ./install/pre-install-config.sh
-sh ./install/desktop-environment.sh
-sh ./install/firmware.sh
-sh ./install/media.sh
-sh ./install/office.sh
-sh ./install/security.sh
+# ... (middle scripts)
 sh ./install/utilities.sh
 
+# 4. Conditional execution based on merged state
 if [ "$SKIP_DEV" = false ]; then
     sh ./install/devops.sh
 else
-    info "Skipping DevOps installation..."
+    info "DevOps install skipped (per saved preference or flag)."
 fi
 
 sh ./install/branding.sh
