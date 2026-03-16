@@ -41,13 +41,15 @@ info " - acpi: reads battery, thermal, and AC adapter info from the kernel’s A
 
 info "Installing kmenuedit: Used to edit the KDE Plasma workspace menus"
 info "Installing powerdevil: Power management service for Plasma."
+info "Installing net-tools: arp, ifconfig, netstat, rarp, nameif and route"
 
 apt-get install -y --no-install-recommends \
   plasma-systemmonitor xdg-user-dirs kinfocenter systemsettings \
   kde-spectacle kcalc partitionmanager kscreen plasma-workspace-wallpapers \
   filelight kio-extras plasma-discover kate alsa-utils ark 7zip bzip2 \
   unar unzip zip arj lzop rar unrar-free systemd-timesyncd curl \
-  powerdevil kde-config-powerdevil upower acpi kmenuedit powerdevil
+  powerdevil kde-config-powerdevil upower acpi kmenuedit powerdevil \
+  net-tools
 
 info Create user directories
 xdg-user-dirs-update
