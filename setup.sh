@@ -6,6 +6,22 @@
 set -e
 set -u
 
+SKIP_DEV=false
+
+# Parse arguments
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --skip-dev)
+      SKIP_DEV=true
+      shift
+      ;;
+    *)
+      # Ignore or handle other unknown arguments
+      shift
+      ;;
+  esac
+done
+
 # Check privileges
 if [ "$(id -u)" -ne 0 ]; then
   info "The install script must be run as root."
@@ -20,7 +36,13 @@ sh ./install/media.sh
 sh ./install/office.sh
 sh ./install/security.sh
 sh ./install/utilities.sh
-sh ./install/devops.sh
+
+if [ "$SKIP_DEV" = false ]; then
+    sh ./install/devops.sh
+else
+    info "Skipping DevOps installation..."
+fi
+
 sh ./install/branding.sh
 sh ./install/post-install-config.sh
 
