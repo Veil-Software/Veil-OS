@@ -42,6 +42,7 @@ info " - acpi: reads battery, thermal, and AC adapter info from the kernel’s A
 info "Installing kmenuedit: Used to edit the KDE Plasma workspace menus"
 info "Installing powerdevil: Power management service for Plasma."
 info "Installing net-tools: arp, ifconfig, netstat, rarp, nameif and route"
+info "Installing fonts-noto-color-emoji: Noto is a collection of font families, each visually harmonized across scripts."
 
 apt-get install -y --no-install-recommends \
   plasma-systemmonitor xdg-user-dirs kinfocenter systemsettings \
@@ -49,7 +50,7 @@ apt-get install -y --no-install-recommends \
   filelight kio-extras plasma-discover kate alsa-utils ark 7zip bzip2 \
   unar unzip zip arj lzop rar unrar-free systemd-timesyncd curl \
   powerdevil kde-config-powerdevil upower acpi kmenuedit powerdevil \
-  net-tools
+  net-tools fonts-noto-color-emoji 
 
 info Create user directories
 xdg-user-dirs-update
