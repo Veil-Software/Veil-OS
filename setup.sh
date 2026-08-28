@@ -41,7 +41,11 @@ echo "SKIP_DEV=$SKIP_DEV" > "$STATE_FILE"
 
 # Run modular install scripts
 sh ./install/pre-install-config.sh
-# ... (middle scripts)
+sh ./install/desktop-environment.sh
+sh ./install/firmware.sh
+sh ./install/media.sh
+sh ./install/office.sh
+sh ./install/security.sh
 sh ./install/utilities.sh
 
 # 4. Conditional execution based on merged state
