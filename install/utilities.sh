@@ -49,7 +49,7 @@ apt-get install -y --no-install-recommends \
   kde-spectacle kcalc partitionmanager kscreen plasma-workspace-wallpapers \
   filelight kio-extras plasma-discover kate alsa-utils ark 7zip bzip2 \
   unar unzip zip arj lzop rar unrar-free systemd-timesyncd curl \
-  powerdevil kde-config-powerdevil upower acpi kmenuedit powerdevil \
+  powerdevil upower acpi kmenuedit powerdevil \
   net-tools fonts-noto-color-emoji 
 
 info Create user directories
