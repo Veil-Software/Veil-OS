@@ -39,4 +39,7 @@ for user_home in /home/*; do
     fi
 done
 
+# Increase max number of file watchers
+sysctl fs.inotify.max_user_watches=524288
+
 info "DevOps Complete!"
