@@ -40,6 +40,8 @@ for user_home in /home/*; do
 done
 
 # Increase max number of file watchers
-sysctl fs.inotify.max_user_watches=524288
+echo "fs.inotify.max_user_watches=524288" | sudo tee /etc/sysctl.d/99-inotify.conf
+echo "fs.inotify.max_user_instances=512" | sudo tee -a /etc/sysctl.d/99-inotify.conf
+sysctl --system
 
 info "DevOps Complete!"
